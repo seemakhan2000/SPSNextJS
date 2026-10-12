@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PAST_EVENTS_BANNER, PAST_EVENTS_PATH } from "../data/past-events";
+import { PAST_EVENTS_BANNER, PAST_EVENTS_PATH } from "../constants/past-events.constants";
 
 export default function PastWebinarHero({ webinar }) {
   return (

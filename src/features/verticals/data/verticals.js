@@ -1110,3 +1110,8 @@ export function verticalSitemapEntries() {
     })),
   ];
 }
+
+export {
+  VERTICALS_PATH,
+  VERTICALS_BANNER,
+} from "../constants/verticals.constants";

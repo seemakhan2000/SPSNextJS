@@ -6,12 +6,13 @@ import PastWebinarDetail from "@/features/past-events/components/PastWebinarDeta
 import JsonLd from "@/features/products/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/features/products/data/products";
 
+import { PAST_EVENTS_PATH } from "@/features/past-events/constants/past-events.constants";
+
 import {
-  PAST_EVENTS_PATH,
   getPastWebinar,
   getPastWebinarStaticParams,
   pastWebinarPath,
-} from "@/features/past-events/constants/past-events.constants";
+} from "@/features/past-events/data/past-events";
 
 import {
   pastWebinarJsonLd,
