@@ -2,7 +2,7 @@ import { ABOUT_PATH } from "@/features/about/constants/about.constants";
 
 import {
   INTERNSHIP_APPLY_PATH,
-  INTERNSHIP_BANNER,       
+  INTERNSHIP_BANNER,
   INTERNSHIP_CAREER_FIELDS_PATH,
   INTERNSHIP_PATH,
   INTERNSHIP_WHO_WE_ARE_PATH,
@@ -11,7 +11,7 @@ import {
 
 export {
   INTERNSHIP_APPLY_PATH,
-  INTERNSHIP_BANNER,       
+  INTERNSHIP_BANNER,
   INTERNSHIP_CAREER_FIELDS_PATH,
   INTERNSHIP_PATH,
   INTERNSHIP_WHO_WE_ARE_PATH,
@@ -746,13 +746,3 @@ export const whoWeArePage = {
 
   cta: internshipPage.cta,
 };
-
-export {
-  careerFieldsMetadata,
-  whoWeAreMetadata,
-} from "../seo/internshipMetadata";
-
-export {
-  careerFieldsJsonLd,
-  whoWeAreJsonLd,
-} from "../seo/intershipJsonLd";

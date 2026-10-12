@@ -10,13 +10,14 @@ import { breadcrumbJsonLd } from "@/features/products/data/products";
 
 import {
   INTERNSHIP_APPLY_PATH,
+  INTERNSHIP_BANNER,
   INTERNSHIP_IMAGES,
   INTERNSHIP_PATH,
 } from "@/features/internship/constants/internship.constants";
 
 import { applyPage } from "@/features/internship/data/internship-apply";
 
-import { applyJsonLd } from "@/features/internship/seo/intershipJsonLd";
+import { applyJsonLd } from "@/features/internship/seo/internshipJsonLd";
 import { applyMetadata } from "@/features/internship/seo/internshipMetadata";
 
 export const metadata = applyMetadata();
@@ -50,7 +51,7 @@ export default function InternshipApplyPage() {
           title={applyPage.headline}
           description={applyPage.description}
           kicker={applyPage.kicker}
-         image={INTERNSHIP_BANNER}
+          image={INTERNSHIP_BANNER}
           overlay
           ctaLabel={applyPage.applyLabel}
           ctaHref={INTERNSHIP_APPLY_PATH}
