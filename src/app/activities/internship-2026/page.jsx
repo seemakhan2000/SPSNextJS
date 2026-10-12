@@ -12,7 +12,7 @@ import {
 
 import { internshipPage } from "@/features/internship/data/internship";
 
-import { internshipJsonLd } from "@/features/internship/seo/internshipJsonLd";
+import { internshipJsonLd } from "@/features/internship/seo/intershipJsonLd";
 import { internshipMetadata } from "@/features/internship/seo/internshipMetadata";
 
 export const metadata = internshipMetadata();
