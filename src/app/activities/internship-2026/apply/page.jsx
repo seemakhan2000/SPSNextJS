@@ -50,7 +50,7 @@ export default function InternshipApplyPage() {
           title={applyPage.headline}
           description={applyPage.description}
           kicker={applyPage.kicker}
-          image={INTERNSHIP_IMAGES.banner}
+         image={INTERNSHIP_BANNER}
           overlay
           ctaLabel={applyPage.applyLabel}
           ctaHref={INTERNSHIP_APPLY_PATH}

@@ -33,7 +33,7 @@ export default function InternshipWhoWeArePage() {
           title={whoWeArePage.headline}
           description={whoWeArePage.description}
           kicker={whoWeArePage.kicker}
-         image={INTERNSHIP_IMAGES.banner}
+   image={INTERNSHIP_BANNER}
           overlay
           ctaLabel={whoWeArePage.applyLabel}
           ctaHref={INTERNSHIP_APPLY_PATH}

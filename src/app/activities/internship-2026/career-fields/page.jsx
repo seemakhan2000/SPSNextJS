@@ -10,6 +10,7 @@ import {
   INTERNSHIP_PATH,
   careerFieldsJsonLd,
   careerFieldsMetadata,
+   INTERNSHIP_IMAGES,  
   careerFieldsPage,
 } from "@/features/internship/data/internship";
 
@@ -33,7 +34,7 @@ export default function InternshipCareerFieldsPage() {
           title={careerFieldsPage.headline}
           description={careerFieldsPage.description}
           kicker={careerFieldsPage.kicker}
-          image={INTERNSHIP_IMAGES.banner}
+         image={INTERNSHIP_BANNER}
           overlay
           ctaLabel={careerFieldsPage.applyLabel}
           ctaHref={INTERNSHIP_APPLY_PATH}
