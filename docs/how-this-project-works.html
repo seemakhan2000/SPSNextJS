@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How this Next.js project works — SPS Enterprise</title>
+  <style>
+    :root {
+      --navy: #012143;
+      --navy-2: #0a335c;
+      --teal: #0ea5a0;
+      --gold: #e8b84a;
+      --paper: #f6f8fb;
+      --ink: #142033;
+      --muted: #4b5b70;
+      --line: #d7e0ea;
+      --code: #0f172a;
+      --card: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+    body {
+      margin: 0;
+      font: 16px/1.6 "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    .wrap { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+    nav.toc {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      background: var(--navy);
+      color: #fff;
+      padding: 1.5rem 1rem 2rem;
+    }
+    nav.toc h1 { font-size: 0.95rem; letter-spacing: .04em; text-transform: uppercase; margin: 0 0 1rem; color: var(--gold); }
+    nav.toc a { display: block; color: #d6e4f3; text-decoration: none; padding: .35rem .5rem; border-radius: 6px; font-size: .9rem; }
+    nav.toc a:hover, nav.toc a.active { background: #ffffff18; color: #fff; }
+    nav.toc .sub { padding-left: .9rem; font-size: .82rem; color: #b7c7d8; }
+    main { padding: 2.2rem 2.4rem 5rem; max-width: 920px; }
+    h2 { color: var(--navy); font-size: 1.7rem; margin: 2.4rem 0 .7rem; }
+    h3 { color: var(--navy-2); font-size: 1.2rem; margin: 1.6rem 0 .5rem; }
+    p, li { color: var(--muted); }
+    strong { color: var(--ink); }
+    code, .path { font-family: Consolas, "Courier New", monospace; font-size: .9em; background: #e8eef6; padding: .1em .35em; border-radius: 4px; color: var(--navy); }
+    pre {
+      background: var(--code);
+      color: #e2e8f0;
+      padding: 1rem 1.1rem;
+      border-radius: 10px;
+      overflow: auto;
+      font: 13px/1.5 Consolas, "Courier New", monospace;
+    }
+    pre .c { color: #7dd3fc; }
+    pre .k { color: #c4b5fd; }
+    .hero {
+      background: linear-gradient(135deg, var(--navy), #134e75);
+      color: #fff;
+      padding: 1.8rem 1.8rem 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 { margin: 0 0 .4rem; font-size: 2rem; }
+    .hero p { color: #c9d8e8; margin: 0; }
+    .badge { display: inline-block; background: var(--gold); color: var(--navy); font-weight: 700; font-size: .75rem; padding: .2rem .5rem; border-radius: 999px; margin-bottom: .7rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin: 1rem 0;
+    }
+    .flow {
+      display: grid;
+      gap: .55rem;
+      margin: 1rem 0;
+    }
+    .flow .step {
+      background: #fff;
+      border-left: 4px solid var(--teal);
+      padding: .7rem 1rem;
+      border-radius: 0 10px 10px 0;
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .flow .step b { display: block; color: var(--navy); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    table { width: 100%; border-collapse: collapse; background: #fff; font-size: .92rem; }
+    th, td { border: 1px solid var(--line); padding: .55rem .7rem; text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: #fff; }
+    .note { background: #fff8e6; border: 1px solid #f1d48a; padding: .8rem 1rem; border-radius: 10px; color: #5c4a12; }
+    .ok { background: #eaf8f4; border: 1px solid #9fd6cc; padding: .8rem 1rem; border-radius: 10px; color: #0f4c46; }
+    .tree { font-family: Consolas, monospace; font-size: .88rem; background: #fff; border: 1px solid var(--line); padding: 1rem; border-radius: 10px; white-space: pre; color: var(--navy); overflow: auto; }
+    .arrow { text-align: center; color: var(--teal); font-weight: 700; margin: .3rem 0; }
+    @media (max-width: 900px) {
+      .wrap { grid-template-columns: 1fr; }
+      nav.toc { position: relative; height: auto; }
+      .grid2 { grid-template-columns: 1fr; }
+      main { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="toc">
+      <h1>Learn this project</h1>
+      <a href="#start">1. What you are looking at</a>
+      <a href="#folders">2. Folder map</a>
+      <a href="#shell">3. The page shell</a>
+      <a href="#home">4. Homepage</a>
+      <a class="sub" href="#home-order">Section order</a>
+      <a class="sub" href="#home-hero">Hero slider</a>
+      <a href="#navbar">5. Navbar</a>
+      <a href="#css">6. CSS — how styling works</a>
+      <a href="#js">7. JS — how behavior works</a>
+      <a href="#products">8. Products pages</a>
+      <a class="sub" href="#product-click">Follow one click</a>
+      <a href="#reuse">9. Reused components</a>
+      <a href="#same-pattern">10. Services &amp; verticals</a>
+      <a href="#practice">11. Practice path</a>
+    </nav>
+
+    <main>
+      <div class="hero">
+        <div class="badge">SPS Enterprise Next.js 16.3.4 · React 19</div>
+        <h1>How this site is built</h1>
+        <p>A walkthrough of the real files in this repo: homepage sections, navbar, CSS/JS, and how product pages share components. Open the matching files in Cursor while you read.</p>
+      </div>
+
+      <div class="ok">
+        <strong>How to use this file:</strong> keep this page open, and in the editor search for the file names in <code>src/</code>. Everything below is from this project, not generic Next.js theory.
+      </div>
+
+      <h2 id="start">1. What you are looking at</h2>
+      <p>This is a <strong>Next.js App Router</strong> site. Pages live in <code>src/app/</code>. Shared UI lives in <code>src/components/</code>. Content/data lives in <code>src/lib/</code>. Images, old theme CSS, and vendor JS live in <code>public/assets/</code>.</p>
+      <p><code>@/</code> is a shortcut for <code>src/</code>. So <code>import Header from "@/components/layout/Header"</code> means <code>src/components/layout/Header.jsx</code>. That alias is set in <code>tsconfig.json</code>.</p>
+      <div class="grid2">
+        <div class="card">
+          <strong>Server components (default)</strong>
+          <p>Most <code>.jsx</code> files in this repo have no <code>"use client"</code>. Next.js renders them on the server into HTML. They can import data from <code>src/lib</code> and pass it as props.</p>
+        </div>
+        <div class="card">
+          <strong>Client components</strong>
+          <p>Files that start with <code>"use client"</code> run in the browser. Examples: <code>SiteBehaviors.jsx</code>, <code>VerticalsNav.jsx</code>, contact form. They handle clicks, sliders, and modals.</p>
+        </div>
+      </div>
+
+      <h2 id="folders">2. Folder map</h2>
+      <div class="tree">sps-enterprise-nextjs/
+├── src/app/                  ← URLs (routes)
+│   ├── layout.jsx            ← wraps EVERY page (header + footer + CSS)
+│   ├── page.jsx              ← homepage  →  /
+│   ├── globals.css           ← extra CSS on top of the old theme
+│   ├── products/
+│   │   ├── page.jsx          ← /products
+│   │   ├── layout.jsx        ← appointment modal + SiteBehaviors
+│   │   └── [category]/
+│   │       ├── page.jsx      ← /products/automation
+│   │       └── [product]/page.jsx  ← /products/automation/watsonx-orchestrate
+│   ├── services/             ← same 3-level idea as products
+│   ├── verticals/[family]/[vertical]/page.jsx
+│   ├── contactus/
+│   └── contracts/vita/
+├── src/components/
+│   ├── layout/               ← Header, Navigation, Footer
+│   ├── home/                 ← homepage sections
+│   ├── products/             ← product UI (also reused by services)
+│   ├── services/
+│   └── verticals/
+├── src/lib/                  ← data + URL helpers (no UI)
+│   ├── products.js
+│   ├── services.js
+│   ├── verticals.js
+│   └── site.js
+└── public/assets/            ← CSS, JS, images, fonts (served as-is)
+    ├── css/style.css
+    ├── css/navbar-v2.css
+    ├── js/navbar-v2.js
+    └── vendor/swiper/</div>
+
+      <h2 id="shell">3. The page shell (every URL)</h2>
+      <p>When you open any URL, Next.js nests layouts. Think of a sandwich:</p>
+      <div class="flow">
+        <div class="step"><b>src/app/layout.jsx</b> Root layout. Loads CSS, fonts, JSON-LD. Renders <code>Header</code> then <code>{children}</code> then <code>Footer</code>.</div>
+        <div class="step"><b>Optional nested layout</b> Example: <code>src/app/products/layout.jsx</code> adds the appointment modal and <code>SiteBehaviors</code> only on product URLs.</div>
+        <div class="step"><b>The page file</b> Homepage is <code>src/app/page.jsx</code>. Products listing is <code>src/app/products/page.jsx</code>.</div>
+      </div>
+      <pre><span class="c">// src/app/layout.jsx — simplified</span>
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel="stylesheet" href="/assets/css/style.css" /&gt;
+    &lt;link rel="stylesheet" href="/assets/css/navbar-v2.css" /&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;Header /&gt;      <span class="c">← navbar lives here, so it is on every page</span>
+    {children}     <span class="c">← the actual page content</span>
+    &lt;Footer /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>That is why you do <strong>not</strong> import the navbar inside homepage sections. The homepage only fills <code>{children}</code>.</p>
+
+      <h2 id="home">4. Homepage — how it is built</h2>
+      <p>File: <code>src/app/page.jsx</code>. It does almost no markup itself. It <strong>stacks section components</strong> from <code>src/components/home/</code>.</p>
+      <pre>export default function Home() {
+  return (
+    &lt;&gt;
+      &lt;main className="page-content"&gt;
+        &lt;Hero /&gt;
+        &lt;About /&gt;
+        &lt;Services /&gt;
+        &lt;StartupsIntro /&gt;
+        &lt;Startups /&gt;
+        &lt;TrustedProducts /&gt;
+        &lt;CTA /&gt;
+        &lt;Testimonials /&gt;
+        &lt;HowItWorks /&gt;
+        &lt;Partners /&gt;
+        &lt;TeamBanner /&gt;
+        &lt;Customers /&gt;
+        &lt;News /&gt;
+        &lt;Verticals /&gt;
+        &lt;AppointmentModal /&gt;
+      &lt;/main&gt;
+      &lt;SiteBehaviors /&gt;
+    &lt;/&gt;
+  );
+}</pre>
+
+      <h3 id="home-order">What each section is</h3>
+      <table>
+        <tr><th>Component file</th><th>What you see on /</th><th>Needs JS?</th></tr>
+        <tr><td><code>Hero.jsx</code></td><td>Full-width slider (video + slides). Class <code>heroSwiper</code>.</td><td>Yes — Swiper</td></tr>
+        <tr><td><code>About.jsx</code></td><td>Company intro + CTA</td><td>No</td></tr>
+        <tr><td><code>Services.jsx</code></td><td>Service tabs + inner cards. Class <code>custom-tab</code>.</td><td>Yes — tabs + swipers</td></tr>
+        <tr><td><code>StartupsIntro.jsx</code> + <code>Startups.jsx</code></td><td>SpinnLabs / startup cards</td><td>Light</td></tr>
+        <tr><td><code>TrustedProducts.jsx</code></td><td>Product logos (Azalio, BMS, …)</td><td>No</td></tr>
+        <tr><td><code>CTA.jsx</code></td><td>Call-to-action band</td><td>No</td></tr>
+        <tr><td><code>Testimonials.jsx</code></td><td>Quotes slider</td><td>Yes — Swiper</td></tr>
+        <tr><td><code>HowItWorks.jsx</code></td><td>Process steps</td><td>No</td></tr>
+        <tr><td><code>Partners.jsx</code></td><td>Partner logos</td><td>No</td></tr>
+        <tr><td><code>TeamBanner.jsx</code></td><td>Team band</td><td>No</td></tr>
+        <tr><td><code>Customers.jsx</code></td><td>Customer logo slider <code>client-swiper2</code></td><td>Yes — Swiper</td></tr>
+        <tr><td><code>News.jsx</code></td><td>News cards</td><td>No</td></tr>
+        <tr><td><code>Verticals.jsx</code></td><td>Industry cards with Read more</td><td>Yes — read-more</td></tr>
+        <tr><td><code>AppointmentModal.jsx</code></td><td>Hidden form <code>#appointmentModal</code></td><td>Yes — open/close</td></tr>
+        <tr><td><code>SiteBehaviors.jsx</code></td><td>Renders nothing. Boots all homepage JS.</td><td>This <em>is</em> the JS</td></tr>
+      </table>
+
+      <h3 id="home-hero">Hero in more detail</h3>
+      <p><code>Hero.jsx</code> is still a server component. It outputs HTML that Swiper expects: <code>.swiper.heroSwiper &gt; .swiper-wrapper &gt; .swiper-slide</code>. Inside a slide you will see helper components defined in the same file: <code>HeroCopy</code>, <code>HeroActions</code>, <code>HeroHighlights</code>. Those are not routes — they are just small pieces of the same file.</p>
+      <p>Desktop uses a <code>&lt;video&gt;</code>. Mobile uses a still image <code>/assets/images/spsimg/banner/bg-v4.avif</code> (also preloaded in the root layout).</p>
+      <p>Buttons with <code>data-open-appointment</code> do not navigate. <code>SiteBehaviors</code> listens for that attribute and opens the modal.</p>
+
+      <div class="note">
+        <strong>Mental model:</strong> homepage components are mostly HTML + Tailwind classes copied from the old PHP theme. Interactivity is not inside those files. It is attached later by <code>SiteBehaviors</code> looking up CSS class names in the DOM.
+      </div>
+
+      <h2 id="navbar">5. How the navbar is linked</h2>
+      <div class="flow">
+        <div class="step"><b>1. Root layout mounts Header</b> <code>src/app/layout.jsx</code> always renders <code>&lt;Header /&gt;</code> above the page.</div>
+        <div class="step"><b>2. Header is the chrome</b> <code>src/components/layout/Header.jsx</code> — logo, internship link, info drawer, hamburger. It imports <code>Navigation</code>.</div>
+        <div class="step"><b>3. Navigation is the menu links</b> <code>src/components/layout/Navigation.jsx</code> — Home, Product mega menu, Services, Verticals, etc.</div>
+        <div class="step"><b>4. CSS paints it</b> <code>public/assets/css/navbar-v2.css</code> styles <code>.navbar-v2</code>, dropdowns, mega menus.</div>
+        <div class="step"><b>5. JS opens dropdowns / mobile menu</b> <code>public/assets/js/navbar-v2.js</code> is loaded by <code>SiteBehaviors</code>. It watches <code>data-nv2-dropdown</code>, <code>#navbarV2Nav</code>, the overlay, the drawer.</div>
+      </div>
+
+      <h3>Two kinds of links in the navbar</h3>
+      <table>
+        <tr><th>You see</th><th>Code</th><th>Why</th></tr>
+        <tr>
+          <td>Internal pages (Home, Products, BMS)</td>
+          <td><code>&lt;Link href="/products/bms"&gt;</code> from <code>next/link</code></td>
+          <td>Client-side navigation. No full page reload. Prefetches the page.</td>
+        </tr>
+        <tr>
+          <td>External sites (Azalio, Fabrico)</td>
+          <td><code>&lt;a href="https://..." target="_blank"&gt;</code></td>
+          <td>Leaves this app. Regular browser link.</td>
+        </tr>
+        <tr>
+          <td>Not built yet</td>
+          <td><code>href="/coming-soon"</code></td>
+          <td>Placeholder route <code>src/app/coming-soon/page.jsx</code>.</td>
+        </tr>
+      </table>
+
+      <p>Product mega menu examples from <code>Navigation.jsx</code>:</p>
+      <pre>&lt;Link href="/products"&gt;Product&lt;/Link&gt;
+&lt;Link href="/products"&gt;View All Products&lt;/Link&gt;
+&lt;Link href="/products/bms"&gt;BMS&lt;/Link&gt;
+&lt;Link href="/products/automation"&gt;Automation&lt;/Link&gt;</pre>
+      <p>Those paths are not invented in the navbar. They match folder names under <code>src/app/products/</code> plus slugs from <code>src/features/products/data/products.js</code>.</p>
+      <p>Verticals mega menu is data-driven: <code>verticalMegaMenu</code> is imported from <code>src/lib/verticals.js</code> and mapped to <code>&lt;Link&gt;</code>s. Change the data file, the menu updates.</p>
+
+      <div class="card">
+        <strong>Important:</strong> <code>SiteBehaviors</code> (which loads <code>navbar-v2.js</code>) is <em>not</em> in the root layout. It is added on the homepage and on nested layouts (products, services, verticals, contact, VITA). If a future page forgets to include it, the hamburger / mega menu JS may not boot on that route.
+      </div>
+
+      <h2 id="css">6. CSS — how styling works</h2>
+      <p>This project is a <strong>ported PHP theme</strong>. Most look-and-feel is the original CSS, not a new Tailwind design system. Layers:</p>
+      <table>
+        <tr><th>Layer</th><th>File</th><th>Role</th></tr>
+        <tr><td>1. Theme</td><td><code>public/assets/css/style.css</code></td><td>Huge original stylesheet: buttons, containers, colors, utility-like classes.</td></tr>
+        <tr><td>2. Navbar</td><td><code>public/assets/css/navbar-v2.css</code></td><td>Only the v2 header / mega menu / drawer.</td></tr>
+        <tr><td>3. Home tweaks</td><td><code>public/assets/css/home-overrides.css</code></td><td>Small homepage fixes.</td></tr>
+        <tr><td>4. Icons</td><td><code>public/assets/icons/...</code></td><td>Font Awesome subset, Flaticon, Feather.</td></tr>
+        <tr><td>5. Swiper</td><td><code>public/assets/vendor/swiper/swiper-bundle.min.css</code></td><td>Slider layout.</td></tr>
+        <tr><td>6. App CSS</td><td><code>src/app/globals.css</code></td><td>Imported in root layout. Fonts, appointment modal, a few React-era fixes. Tailwind v4 is enabled via PostCSS.</td></tr>
+      </table>
+      <p>Classes you see on components such as <code>2xxl:py-25</code>, <code>btn btn-primary</code>, <code>container</code>, <code>row</code> come from the theme + Tailwind. Images use public URLs: <code>/assets/images/...</code> maps to <code>public/assets/images/...</code>.</p>
+      <pre><span class="c">// root layout loads CSS as normal &lt;link&gt; tags (not CSS modules)</span>
+&lt;link rel="stylesheet" href="/assets/css/style.css" /&gt;
+&lt;link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css" /&gt;
+&lt;link rel="stylesheet" href="/assets/css/navbar-v2.css" /&gt;
+&lt;link rel="stylesheet" href="/assets/css/home-overrides.css" /&gt;</pre>
+      <p>Because they are in <code>public/</code>, the browser requests them as static files. Next.js does not hash those filenames.</p>
+
+      <h2 id="js">7. JS — how behavior works</h2>
+      <p>File: <code>src/components/home/SiteBehaviors.jsx</code> (<code>"use client"</code>). It returns <code>null</code> — you never see it. On mount it:</p>
+      <ol>
+        <li>Wires click handlers written in React: appointment modal, read-more, offcanvas, box-hover, tabs, filters.</li>
+        <li>Dynamically injects <code>&lt;script src="/assets/vendor/swiper/swiper-bundle.min.js"&gt;</code>.</li>
+        <li>Starts Swipers: <code>.heroSwiper</code>, homepage carousels, customer logos, service card swipers.</li>
+        <li>Loads <code>/assets/js/navbar-v2.js</code> for the header.</li>
+        <li>Later (idle) loads leftover theme scripts: <code>custom.js</code>, <code>dz.ajax.js</code>.</li>
+      </ol>
+      <pre><span class="c">// the magic hook for the appointment popup</span>
+document click → closest("[data-open-appointment]")
+             → add class "active" on #appointmentModal
+             → lock body scroll</pre>
+      <p>So a product CTA does not need its own React state. Put <code>data-open-appointment</code> on a button anywhere, as long as that page also rendered <code>AppointmentModal</code> + <code>SiteBehaviors</code>.</p>
+      <div class="note">
+        Tabs: <code>SiteBehaviors.initTabs()</code> only targets <code>.custom-tab</code> (homepage / services markup). React-controlled tabs such as vertical service tabs must <strong>not</strong> use that class, or both systems fight over clicks.
+      </div>
+
+      <h2 id="products">8. Products — data, routes, components</h2>
+      <p>Products are not separate HTML files per item. There are <strong>three route templates</strong> and one big data file.</p>
+
+      <h3>The data file</h3>
+      <p><code>src/features/products/data/products.js</code> holds:</p>
+      <ul>
+        <li><code>productFamilies</code> — SPS / IBM / Other (used on <code>/products</code>)</li>
+        <li><code>categories</code> — Automation, Security, BMS, …</li>
+        <li><code>products</code> — individual items under a category</li>
+        <li>helpers: <code>categoryPath("automation")</code> → <code>/products/automation</code></li>
+        <li><code>productPath("automation", "watsonx-orchestrate")</code> → <code>/products/automation/watsonx-orchestrate</code></li>
+        <li><code>getCategory</code>, <code>getProduct</code>, <code>getProductsByCategory</code></li>
+      </ul>
+
+      <h3>The three URLs</h3>
+      <table>
+        <tr><th>URL</th><th>File</th><th>What it renders</th></tr>
+        <tr>
+          <td><code>/products</code></td>
+          <td><code>src/app/products/page.jsx</code></td>
+          <td><code>PageBanner</code> + <code>FamilyExplorer</code> (families from data)</td>
+        </tr>
+        <tr>
+          <td><code>/products/[category]</code><br>e.g. <code>/products/automation</code></td>
+          <td><code>src/app/products/[category]/page.jsx</code></td>
+          <td>Looks up category. If <code>layout: "content"</code> (BMS, CSM) → <code>BmsDetail</code>. Else a grid of <code>CategoryProductCard</code>.</td>
+        </tr>
+        <tr>
+          <td><code>/products/[category]/[product]</code></td>
+          <td><code>src/app/products/[category]/[product]/page.jsx</code></td>
+          <td><code>PageBanner</code> + <code>ProductDetail</code> for one item.</td>
+        </tr>
+      </table>
+      <p><code>[category]</code> and <code>[product]</code> are <strong>dynamic segments</strong>. Next.js fills them from the URL, then the page calls <code>getCategory(category)</code>. <code>generateStaticParams()</code> prebuilds every known slug. <code>dynamicParams = false</code> means unknown slugs 404.</p>
+
+      <div class="arrow">↓ how a category page decides what to show</div>
+      <pre>const data = getCategory(category)
+if (!data) notFound()
+
+if (data.layout === "content") {
+  <span class="c">// BMS / CSM — a long custom page, not a card grid</span>
+  return &lt;PageBanner ... /&gt; + &lt;BmsDetail category={data} /&gt;
+}
+
+const items = getProductsByCategory(data.slug)
+return items.map(item =&gt;
+  &lt;CategoryProductCard product={item} categorySlug={data.slug} /&gt;
+)</pre>
+
+      <p>Each card’s “Explore Product” link is:</p>
+      <pre>href = productPath(categorySlug, product.slug)
+     = `/products/${categorySlug}/${product.slug}`</pre>
+      <p>That lands on the learn-more page, which passes the same objects into <code>ProductDetail</code>. <code>ProductDetail</code> then composes smaller pieces: images, feature list, <code>AgentTabs</code>, capabilities, video button (<code>popup-youtube</code> class for legacy JS).</p>
+
+      <h3 id="product-click">Follow one click</h3>
+      <div class="flow">
+        <div class="step"><b>Navbar</b> User clicks Product → Automation. <code>Link href="/products/automation"</code>.</div>
+        <div class="step"><b>Route</b> Next matches <code>src/app/products/[category]/page.jsx</code> with <code>category = "automation"</code>.</div>
+        <div class="step"><b>Data</b> <code>getCategory("automation")</code> returns the object from <code>categories</code> in <code>products.js</code>.</div>
+        <div class="step"><b>UI</b> Banner + map of products whose <code>category</code> field is <code>"automation"</code>.</div>
+        <div class="step"><b>Card</b> User clicks Explore on Watsonx Orchestrate → <code>/products/automation/watsonx-orchestrate</code>.</div>
+        <div class="step"><b>Detail route</b> <code>[product]/page.jsx</code> calls <code>getProduct("automation", "watsonx-orchestrate")</code> and renders <code>ProductDetail</code>.</div>
+        <div class="step"><b>Shared chrome</b> Header/Footer still from root layout. Modal + SiteBehaviors from <code>products/layout.jsx</code>.</div>
+      </div>
+
+      <h2 id="reuse">9. How components are reused</h2>
+      <p>The project avoids copying banners and sliders. One component, many pages, different props.</p>
+      <table>
+        <tr><th>Component</th><th>Born for</th><th>Also used on</th></tr>
+        <tr><td><code>Header</code> / <code>Navigation</code> / <code>Footer</code></td><td>Site chrome</td><td>Every page via root layout</td></tr>
+        <tr><td><code>PageBanner</code></td><td>Products</td><td>Services, contact, coming-soon, product/service detail</td></tr>
+        <tr><td><code>FamilyExplorer</code></td><td>Products listing</td><td>Services listing (same tabs UI, different families data)</td></tr>
+        <tr><td><code>JsonLd</code></td><td>Products SEO</td><td>Services, verticals, contact</td></tr>
+        <tr><td><code>Customers</code></td><td>Homepage</td><td>Every vertical page</td></tr>
+        <tr><td><code>AppointmentModal</code></td><td>Homepage</td><td>Products, services, verticals, contact, VITA layouts</td></tr>
+        <tr><td><code>SiteBehaviors</code></td><td>Homepage JS</td><td>Same layouts as the modal</td></tr>
+        <tr><td><code>WhyChoose</code>, <code>ProductStats</code>, <code>ProductCta</code></td><td>Product detail</td><td>Services listing</td></tr>
+        <tr><td><code>VerticalPage</code></td><td>All industry pages</td><td>One template; content comes from <code>verticalPages</code> in <code>verticals.js</code></td></tr>
+      </table>
+      <p>Reuse rule in this codebase: <strong>put content in <code>src/lib</code>, put layout in a component, put the URL in <code>src/app</code>.</strong> The page file should stay small — fetch data, pick a component, pass props.</p>
+      <pre><span class="c">// services listing reuses product UI</span>
+&lt;PageBanner title="Our Services" ... /&gt;
+&lt;FamilyExplorer families={serviceFamilies} getCategory={getCategory} /&gt;</pre>
+
+      <h2 id="same-pattern">10. Same pattern: services and verticals</h2>
+      <p>Once you understand products, the rest is a copy of the idea.</p>
+      <table>
+        <tr><th></th><th>Data</th><th>Routes</th><th>Main UI</th></tr>
+        <tr>
+          <td>Products</td>
+          <td><code>src/features/products/data/products.js</code></td>
+          <td><code>/products</code> → <code>/products/:cat</code> → <code>/products/:cat/:item</code></td>
+          <td><code>FamilyExplorer</code>, <code>CategoryProductCard</code>, <code>ProductDetail</code></td>
+        </tr>
+        <tr>
+          <td>Services</td>
+          <td><code>src/lib/services.js</code></td>
+          <td><code>/services</code> → <code>/services/:cat</code> → <code>/services/:cat/:item</code></td>
+          <td>Same banners + <code>ServiceDetail</code></td>
+        </tr>
+        <tr>
+          <td>Verticals</td>
+          <td><code>src/lib/verticals.js</code></td>
+          <td><code>/verticals/:family/:vertical</code></td>
+          <td><code>VerticalPage</code> (hero, optional solutions, nav, tabs, customers)</td>
+        </tr>
+      </table>
+
+      <h2 id="practice">11. Practice path (do this in order)</h2>
+      <ol>
+        <li>Open <code>src/app/layout.jsx</code> and <code>src/components/layout/Header.jsx</code>. Confirm Header wraps every page.</li>
+        <li>Open <code>src/app/page.jsx</code>. Click each import and scroll the matching homepage section in the browser at <code>http://localhost:3000</code>.</li>
+        <li>Search the homepage for <code>data-open-appointment</code>, then read <code>initAppointmentModal</code> in <code>SiteBehaviors.jsx</code>.</li>
+        <li>Click Product in the navbar. Trace <code>href="/products"</code> → <code>src/app/products/page.jsx</code> → <code>FamilyExplorer</code> → <code>categoryPath(slug)</code>.</li>
+        <li>Open a category, then a product. Watch the URL segments match <code>[category]</code> and <code>[product]</code>.</li>
+        <li>Change a product <code>summary</code> in <code>src/features/products/data/products.js</code> and refresh — the card text should change. That proves pages are data-driven.</li>
+        <li>Open <code>src/app/verticals/[family]/[vertical]/page.jsx</code>. See how one file serves Government, Education, Telcos, etc.</li>
+      </ol>
+
+      <div class="ok">
+        <strong>One sentence summary:</strong> layouts wrap the chrome, page files only assemble sections, <code>src/lib</code> owns the content and URLs, shared components take props, and <code>SiteBehaviors</code> plus files in <code>public/assets</code> add the old theme’s CSS and JavaScript on top.
+      </div>
+    </main>
+  </div>
+</body>
+</html>
