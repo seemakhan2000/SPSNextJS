@@ -754,4 +754,4 @@ export {
 export {
   careerFieldsJsonLd,
   whoWeAreJsonLd,
-} from "../seo/internshipJsonLd";
+} from "../seo/intershipJsonLd";
