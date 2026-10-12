@@ -1,6 +1,12 @@
 import { ABOUT_PATH } from "@/features/about/constants/about.constants";
 
-import { INTERNSHIP_IMAGES } from "../constants/internship.constants";
+import {
+  INTERNSHIP_APPLY_PATH,
+  INTERNSHIP_CAREER_FIELDS_PATH,
+  INTERNSHIP_PATH,
+  INTERNSHIP_WHO_WE_ARE_PATH,
+  INTERNSHIP_IMAGES,
+} from "../constants/internship.constants";
 
 export {
   INTERNSHIP_APPLY_PATH,
@@ -8,7 +14,7 @@ export {
   INTERNSHIP_PATH,
   INTERNSHIP_WHO_WE_ARE_PATH,
   INTERNSHIP_IMAGES,
-} from "../constants/internship.constants";
+};
 
 export const internshipPage = {
   title: "Internship Program 2026",
@@ -739,17 +745,10 @@ export const whoWeArePage = {
   cta: internshipPage.cta,
 };
 
-
-
-
-
-
 export {
   careerFieldsMetadata,
   whoWeAreMetadata,
 } from "../seo/internshipMetadata";
-
-
 
 export {
   careerFieldsJsonLd,
