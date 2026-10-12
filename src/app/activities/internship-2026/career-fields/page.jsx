@@ -8,11 +8,17 @@ import {
   INTERNSHIP_BANNER,
   INTERNSHIP_CAREER_FIELDS_PATH,
   INTERNSHIP_PATH,
-  careerFieldsJsonLd,
-  careerFieldsMetadata,
-   INTERNSHIP_IMAGES,  
   careerFieldsPage,
 } from "@/features/internship/data/internship";
+
+import {
+  careerFieldsMetadata,
+} from "@/features/internship/seo/internshipMetadata";
+
+import {
+  careerFieldsJsonLd,
+} from "@/features/internship/seo/intershipJsonLd";
+
 
 export const metadata = careerFieldsMetadata();
 

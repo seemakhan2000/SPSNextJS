@@ -16,11 +16,6 @@ import {
 
 import { applyPage } from "../data/internship-apply";
 
-/*
-|--------------------------------------------------------------------------
-| Internship Metadata
-|--------------------------------------------------------------------------
-*/
 
 export function internshipMetadata() {
   const { title, description } = internshipPage;
@@ -49,11 +44,7 @@ export function internshipMetadata() {
   };
 }
 
-/*
-|--------------------------------------------------------------------------
-| Career Fields Metadata
-|--------------------------------------------------------------------------
-*/
+
 
 export function careerFieldsMetadata() {
   const { title, description } = careerFieldsPage;
@@ -82,11 +73,6 @@ export function careerFieldsMetadata() {
   };
 }
 
-/*
-|--------------------------------------------------------------------------
-| Who We Are Metadata
-|--------------------------------------------------------------------------
-*/
 
 export function whoWeAreMetadata() {
   const { title, description } = whoWeArePage;

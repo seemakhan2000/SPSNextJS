@@ -17,7 +17,7 @@ import {
 
 import { applyPage } from "@/features/internship/data/internship-apply";
 
-import { applyJsonLd } from "@/features/internship/seo/internshipJsonLd";
+import { applyJsonLd } from "@/features/internship/seo/intershipJsonLd";
 import { applyMetadata } from "@/features/internship/seo/internshipMetadata";
 
 export const metadata = applyMetadata();

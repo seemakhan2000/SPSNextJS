@@ -8,10 +8,17 @@ import {
   INTERNSHIP_BANNER,
   INTERNSHIP_PATH,
   INTERNSHIP_WHO_WE_ARE_PATH,
-  whoWeAreJsonLd,
-  whoWeAreMetadata,
   whoWeArePage,
 } from "@/features/internship/data/internship";
+
+import {
+  whoWeAreMetadata,
+} from "@/features/internship/seo/internshipMetadata";
+
+import {
+  whoWeAreJsonLd,
+} from "@/features/internship/seo/intershipJsonLd";
+
 
 export const metadata = whoWeAreMetadata();
 

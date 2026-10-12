@@ -16,11 +16,7 @@ import {
 
 import { applyPage } from "../data/internship-apply";
 
-/*
-|--------------------------------------------------------------------------
-| Internship JSON-LD
-|--------------------------------------------------------------------------
-*/
+
 
 export function internshipJsonLd() {
   return {
@@ -46,11 +42,6 @@ export function internshipJsonLd() {
   };
 }
 
-/*
-|--------------------------------------------------------------------------
-| Career Fields JSON-LD
-|--------------------------------------------------------------------------
-*/
 
 export function careerFieldsJsonLd() {
   return {
@@ -72,11 +63,6 @@ export function careerFieldsJsonLd() {
   };
 }
 
-/*
-|--------------------------------------------------------------------------
-| Who We Are JSON-LD
-|--------------------------------------------------------------------------
-*/
 
 export function whoWeAreJsonLd() {
   return {
@@ -98,11 +84,7 @@ export function whoWeAreJsonLd() {
   };
 }
 
-/*
-|--------------------------------------------------------------------------
-| Apply JSON-LD
-|--------------------------------------------------------------------------
-*/
+
 
 export function applyJsonLd() {
   return {
