@@ -5,13 +5,14 @@ import JsonLd from "@/features/products/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/features/products/data/products";
 import {
   INTERNSHIP_APPLY_PATH,
+  INTERNSHIP_BANNER,
   INTERNSHIP_PATH,
   INTERNSHIP_IMAGES,
 } from "@/features/internship/constants/internship.constants";
 
 import { internshipPage } from "@/features/internship/data/internship";
 
-import { internshipJsonLd } from "@/features/internship/seo/intershipJsonLd";
+import { internshipJsonLd } from "@/features/internship/seo/internshipJsonLd";
 import { internshipMetadata } from "@/features/internship/seo/internshipMetadata";
 
 export const metadata = internshipMetadata();
@@ -33,7 +34,7 @@ export default function InternshipPage() {
           title={internshipPage.headline}
           description={internshipPage.description}
           kicker={internshipPage.kicker}
-       image={INTERNSHIP_BANNER}
+          image={INTERNSHIP_BANNER}
           overlay
           ctaLabel={internshipPage.applyLabel}
           ctaHref={INTERNSHIP_APPLY_PATH}
