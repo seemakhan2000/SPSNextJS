@@ -1,6 +1,6 @@
 
 export const INTERNSHIP_PATH = "/activities/internship-2026";
-
+export const INTERNSHIP_BANNER = INTERNSHIP_IMAGES.banner;
 export const INTERNSHIP_CAREER_FIELDS_PATH =
   "/activities/internship-2026/career-fields";
 

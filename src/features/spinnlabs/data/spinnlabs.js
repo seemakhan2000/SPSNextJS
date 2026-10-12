@@ -15,9 +15,7 @@ import {
   SPINNLABS_SIG_ITEMS,
 } from "../constants/spinnlabs.constants";
 
-/* =========================================================
-   SHARED HUB
-========================================================= */
+
 
 const hub = {
   title: "Tech Hub for innovators and entrepreneurs",
@@ -26,9 +24,7 @@ const hub = {
   background: SPINNLABS_IMAGES.overview.hubBackground,
 };
 
-/* =========================================================
-   OVERVIEW
-========================================================= */
+
 
 export const overviewPage = {
   title: "Overview",
@@ -105,9 +101,7 @@ export const overviewPage = {
   },
 };
 
-/* =========================================================
-   ACADEMIA
-========================================================= */
+
 
 export const academiaPage = {
   title: "Academia",
@@ -193,9 +187,7 @@ export const industryPage = {
   },
 };
 
-/* =========================================================
-   CENTERS OF EXPERTISE
-========================================================= */
+
 
 export const expertisePage = {
   title: "Centers of Expertise",
@@ -257,9 +249,7 @@ export const expertisePage = {
   },
 };
 
-/* =========================================================
-   STARTUPS
-========================================================= */
+
 
 export const startupsPage = {
   title: "Startups",
@@ -716,9 +706,6 @@ export const proposePage = {
   },
 };
 
-/* =========================================================
-   CREATE PLAN
-========================================================= */
 
 export const planPage = {
   title: "Create Plan",

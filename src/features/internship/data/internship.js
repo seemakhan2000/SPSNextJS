@@ -1,6 +1,8 @@
 import { ABOUT_PATH } from "@/features/about/constants/about.constants";
 
-import {
+import { INTERNSHIP_IMAGES } from "../constants/internship.constants";
+
+export {
   INTERNSHIP_APPLY_PATH,
   INTERNSHIP_CAREER_FIELDS_PATH,
   INTERNSHIP_PATH,
@@ -736,3 +738,20 @@ export const whoWeArePage = {
 
   cta: internshipPage.cta,
 };
+
+
+
+
+
+
+export {
+  careerFieldsMetadata,
+  whoWeAreMetadata,
+} from "../seo/internshipMetadata";
+
+
+
+export {
+  careerFieldsJsonLd,
+  whoWeAreJsonLd,
+} from "../seo/internshipJsonLd";
