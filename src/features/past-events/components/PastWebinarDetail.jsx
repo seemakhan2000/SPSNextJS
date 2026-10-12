@@ -1,5 +1,5 @@
 import ProductCta from "@/features/products/components/ProductCta";
-import { pastEventsPage } from "@/lib/past-events";
+import { pastEventsPage } from "@/features/past-events/data/past-events";
 
 export default function PastWebinarDetail({ webinar }) {
   const { cta } = pastEventsPage;
