@@ -2,7 +2,7 @@ import Link from "next/link";
 import PageBanner from "@/features/products/components/PageBanner";
 import WhoWeAreDetail from "@/features/internship/components/WhoWeAreDetail";
 import JsonLd from "@/features/products/seo/JsonLd";
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 import {
   INTERNSHIP_APPLY_PATH,
   INTERNSHIP_BANNER,

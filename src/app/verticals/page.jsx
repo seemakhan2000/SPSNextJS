@@ -3,7 +3,7 @@ import ProductCta from "@/features/products/components/ProductCta";
 import JsonLd from "@/features/products/seo/JsonLd";
 import VerticalsNav from "@/features/verticals/components/VerticalsNav";
 import VerticalsHub from "@/features/verticals/components/VerticalsHub";
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 import {
   VERTICALS_BANNER,

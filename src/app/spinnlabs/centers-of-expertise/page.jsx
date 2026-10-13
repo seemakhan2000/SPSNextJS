@@ -3,7 +3,7 @@ import JsonLd from "@/features/products/seo/JsonLd";
 
 import ExpertiseDetail from "@/features/spinnlabs/components/ExpertiseDetail";
 
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 import {
   SPINNLABS_EXPERTISE_PATH,

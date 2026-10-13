@@ -6,7 +6,7 @@ import InternshipNav from "@/features/internship/components/InternshipNav";
 import InternshipApplyForm from "@/features/internship/components/InternshipApplyForm";
 
 import JsonLd from "@/features/products/seo/JsonLd";
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 import {
   INTERNSHIP_APPLY_PATH,

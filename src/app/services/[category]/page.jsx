@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import PageBanner from "@/features/products/components/PageBanner";
 import CategoryProductCard from "@/features/products/components/CategoryProductCard";
 import JsonLd from "@/features/products/seo/JsonLd";
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 import {
   categoryPath,
   getCategory,

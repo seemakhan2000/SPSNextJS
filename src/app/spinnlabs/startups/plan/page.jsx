@@ -3,7 +3,7 @@ import PlanDetail from "@/features/spinnlabs/components/PlanDetail";
 
 import JsonLd from "@/features/products/seo/JsonLd";
 
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 import {
   SPINNLABS_IMAGES,

@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_SHORT_NAME, absoluteUrl } from "@/lib/site";
+import {SITE_SHORT_NAME, absoluteUrl } from "@/lib/site";
 import {
   SERVICE_BANNER,
   SERVICE_FALLBACK_IMAGE,

@@ -13,7 +13,7 @@ import { vitaPage } from "@/features/contracts/data/contractsData";
 import { vitaJsonLd } from "@/features/contracts/seo/contractsJsonLd";
 import { vitaMetadata } from "@/features/contracts/seo/contractsMetadata";
 
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 export const metadata = vitaMetadata();
 

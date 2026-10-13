@@ -4,7 +4,7 @@ import PastWebinarHero from "@/features/past-events/components/PastWebinarHero";
 import PastWebinarDetail from "@/features/past-events/components/PastWebinarDetail";
 
 import JsonLd from "@/features/products/seo/JsonLd";
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 import { PAST_EVENTS_PATH } from "@/features/past-events/constants/past-events.constants";
 

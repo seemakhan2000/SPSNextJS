@@ -3,7 +3,7 @@ import EquityDetail from "@/features/spinnlabs/components/EquityDetail";
 
 import JsonLd from "@/features/products/seo/JsonLd";
 
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 import {
   SPINNLABS_EQUITY_PATH,

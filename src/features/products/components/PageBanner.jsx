@@ -19,7 +19,7 @@ export default function PageBanner({
       className={`2xxl:pt-1 2xxl:pb-46 lg:pt-21.5 lg:pb-21.5 sm:pt-20 sm:pb-20 pt-19.5 pb-19.5 bg-cover bg-center relative z-1 w-full before:absolute before:left-0 before:top-0 before:size-full ${
         overlay ? "before:bg-secondary before:opacity-70 bg-white" : ""
       }`}
-      style={{ backgroundImage: `url(${image})` }}
+      style={image ? { backgroundImage: `url(${image})` } : undefined}
     >
       <div className="container table relative z-1">
         <div className={`${cellHeight} align-middle sm:py-22.5 py-10 text-center table-cell`}>

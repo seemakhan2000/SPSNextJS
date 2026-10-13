@@ -3,7 +3,7 @@ import RoundtableDetail from "@/features/roundtables/components/RoundtableDetail
 
 import JsonLd from "@/features/products/seo/JsonLd";
 
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 import { ROUNDTABLE_PATH } from "@/features/roundtables/constants/roundtable.constants";
 

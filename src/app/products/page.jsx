@@ -1,12 +1,15 @@
+
 import PageBanner from "@/features/products/components/PageBanner";
 import FamilyExplorer from "@/features/products/components/FamilyExplorer";
-import JsonLd from "@/features/products/seo/JsonLd";
-import {
-  breadcrumbJsonLd,
-  listingMetadata,
-  productFamilies,
+
+import JsonLd, {
   productsJsonLd,
-} from "@/features/products/data/products";
+  breadcrumbJsonLd,
+} from "@/features/products/seo/JsonLd";
+
+import { listingMetadata } from "@/features/products/seo/Metadata";
+
+import { productFamilies } from "@/features/products/data/products";
 
 export const metadata = listingMetadata();
 
@@ -22,6 +25,7 @@ export default function ProductsPage() {
           ]),
         ]}
       />
+
       <main className="page-content">
         <PageBanner
           title="Our Products"
@@ -32,6 +36,7 @@ export default function ProductsPage() {
             { label: "Products" },
           ]}
         />
+
         <FamilyExplorer families={productFamilies} />
       </main>
     </>

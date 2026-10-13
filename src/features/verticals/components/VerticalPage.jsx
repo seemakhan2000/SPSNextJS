@@ -4,7 +4,7 @@ import VerticalsServiceTabs from "./VerticalsServiceTabs";
 import VerticalSolutions from "./VerticalSolutions";
 import Customers from "@/features/home/components/Customers";
 import JsonLd from "@/features/products/seo/JsonLd";
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 import { verticalPath } from "../data/verticals";
 import { VERTICALS_PATH } from "../constants/verticals.constants";
 

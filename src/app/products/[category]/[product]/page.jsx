@@ -1,17 +1,19 @@
 import { notFound } from "next/navigation";
 import PageBanner from "@/features/products/components/PageBanner";
 import ProductDetail from "@/features/products/components/ProductDetail";
-import JsonLd from "@/features/products/seo/JsonLd";
-import {
+import JsonLd, {
+  productJsonLd,
   breadcrumbJsonLd,
+} from "@/features/products/seo/JsonLd";
+import {
   categoryPath,
   getCategory,
   getProduct,
   getProductStaticParams,
-  productJsonLd,
-  productMetadata,
   productPath,
 } from "@/features/products/data/products";
+
+import { productMetadata } from "@/features/products/seo/Metadata";
 
 export const dynamicParams = false;
 

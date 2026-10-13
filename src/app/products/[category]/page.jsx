@@ -1,16 +1,22 @@
+
 import { notFound } from "next/navigation";
+
 import PageBanner from "@/features/products/components/PageBanner";
 import CategoryProductCard from "@/features/products/components/CategoryProductCard";
 import BmsDetail from "@/features/products/components/BmsDetail";
-import JsonLd from "@/features/products/seo/JsonLd";
-import {
+
+import JsonLd, {
   breadcrumbJsonLd,
-  categoryMetadata,
+  productJsonLd,
+} from "@/features/products/seo/JsonLd";
+
+import { categoryMetadata } from "@/features/products/seo/Metadata";
+
+import {
   categoryPath,
   getCategory,
   getCategoryStaticParams,
   getProductsByCategory,
-  productJsonLd,
 } from "@/features/products/data/products";
 
 export const dynamicParams = false;
@@ -25,6 +31,7 @@ export async function generateMetadata({ params }) {
   if (!data) return { title: "Products" };
   return categoryMetadata(data);
 }
+
 
 export default async function ProductCategoryPage({ params }) {
   const { category } = await params;

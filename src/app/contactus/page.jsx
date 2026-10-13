@@ -13,7 +13,7 @@ import { contactPage } from "@/features/contact/data/contactData";
 import { contactMetadata } from "@/features/contact/seo/contactMetadata";
 import { contactJsonLd } from "@/features/contact/seo/contactJsonLd";
 
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 export const metadata = contactMetadata();
 

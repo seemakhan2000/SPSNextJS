@@ -3,7 +3,7 @@ import JsonLd from "@/features/products/seo/JsonLd";
 
 import AcademiaDetail from "@/features/spinnlabs/components/AcademiaDetail";
 
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 import {
   SPINNLABS_ACADEMIA_PATH,

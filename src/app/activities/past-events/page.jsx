@@ -2,7 +2,7 @@ import PageBanner from "@/features/products/components/PageBanner";
 import PastEventsList from "@/features/past-events/components/PastEventsList";
 
 import JsonLd from "@/features/products/seo/JsonLd";
-import { breadcrumbJsonLd } from "@/features/products/data/products";
+import { breadcrumbJsonLd } from "@/features/products/seo/JsonLd";
 
 import {
   PAST_EVENTS_BANNER,

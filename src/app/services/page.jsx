@@ -3,8 +3,9 @@ import FamilyExplorer from "@/features/products/components/FamilyExplorer";
 import WhyChoose from "@/features/products/components/FamilyExplorer";
 import ProductStats from "@/features/products/components/ProductStats";
 import ProductCta from "@/features/products/components/ProductCta";
-import JsonLd from "@/features/products/seo/JsonLd";
-import { breadcrumbJsonLd as productBreadcrumbJsonLd } from "@/features/products/data/products";
+import JsonLd, {
+  breadcrumbJsonLd as productBreadcrumbJsonLd,
+} from "@/features/products/seo/JsonLd";
 import {
   serviceFamilies,
   whyChooseItems,
